@@ -49,7 +49,7 @@ public class Main {
                     if(checkContinue_1){
                         break;
                     } else{run=false;}
-
+                       break;
                 case 2:
                     int chose_2;
                     do {
@@ -77,6 +77,7 @@ public class Main {
                     if(checkContinue_2){
                         break;
                     } else{run=false;}
+                    break;
                 case 3:
                     int chose_3;
                     do {
@@ -101,6 +102,8 @@ public class Main {
                     if(checkContinue_3){
                         break;
                     } else{run=false;}
+                    break;
+
                 case 4:
                     int chose_4;
                     do {
@@ -125,12 +128,14 @@ public class Main {
                     if(checkContinue_4){
                         break;
                     } else{run=false;}
+                    break;
                 case 5:
                     manageTeachingService.printSalary(manageTeachingList);
                     boolean checkContinue_5= helper.askYesNo();
                     if(checkContinue_5){
                         break;
                     } else{run=false;}
+                    break;
                 case 6:
                     run=false;
                     break;
