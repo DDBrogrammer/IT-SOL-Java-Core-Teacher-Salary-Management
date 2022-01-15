@@ -43,4 +43,16 @@ public class ManageTeachingService implements BaseService<ManageTeaching>  {
             }
         }    }
 
+    @Override
+    public void printListData(ManageTeaching[] tempList) {
+        for(int i=0;i<=tempList.length-1;i++){
+            System.out.println(tempList[i].toString());
+        }
+    }
+
+    @Override
+    public ManageTeaching getInputEntity() {
+        return null;
+    }
+
 }

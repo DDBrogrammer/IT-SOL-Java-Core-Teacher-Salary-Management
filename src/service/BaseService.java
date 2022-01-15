@@ -8,4 +8,6 @@ public interface BaseService<Entity> {
      int getTrueListLength(Entity[] tempList);
      void mergeNewListAndSetId ( Entity[] newList ,Entity[] tempList);
      void mergeNewData(Entity newEntity, Entity[] tempList);
+     void printListData(Entity[] tempList);
+     Entity getInputEntity();
 }

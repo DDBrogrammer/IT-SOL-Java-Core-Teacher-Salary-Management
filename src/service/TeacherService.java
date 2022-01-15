@@ -2,8 +2,13 @@ package service;
 
 import entity.Subject;
 import entity.Teacher;
+import helper.Helper;
+import helper.ValidateSubject;
+import helper.ValidateTeacher;
 
 public class TeacherService implements BaseService<Teacher>{
+    private Helper helper =new Helper();
+    private ValidateTeacher validateTeacher=new  ValidateTeacher();
     public void setTempListData(Teacher[] teacherList){
         for(int i=0;i<= teacherList.length-1;i++){
             teacherList[i]= new Teacher("","","",0,"");
@@ -40,5 +45,56 @@ public class TeacherService implements BaseService<Teacher>{
     }
     @Override
     public void mergeNewData(Teacher newEntity, Teacher[] tempList) {
+    }
+    @Override
+    public void printListData(Teacher[] tempList) {
+        for(int i=0;i<=tempList.length-1;i++){
+            if( tempList[i].getId()!=0){
+                System.out.println(tempList[i].toString());
+            }
+
+        }
+    }
+
+    @Override
+    public Teacher getInputEntity() {
+        String name, address,phone,degree ;
+
+        do {
+            name= helper.getString("Nhập tên giáo viên:");
+            if (validateTeacher.validateName(name)) {
+                break;
+            }
+        } while (true);
+
+        do {
+            address = helper.getString("Nhập địa chỉ giáo viên: ");
+            if (validateTeacher.validateAddress(address)) {
+                break;
+            }
+        } while (true);
+
+        do{ phone= helper.getString("Nhập số điện thoại: ");
+            if(validateTeacher.validatePhone(phone)){
+                break;
+            }
+        }
+        while(true);
+        do{ degree= helper.getString("Nhập trình độ:");
+            if(validateTeacher.validateDegree(degree)){
+                break;
+            }
+        }
+        while(true);
+        Teacher newSubject = new Teacher(name,address,phone,1,degree.toUpperCase());
+        return newSubject;
+    }
+    public  Teacher[] getInputListEntity(Teacher[] teacherList ){
+        int numberOfTeacher= helper.getInt("Nhập số lượng giáo viên: ");
+        Teacher[] newTeacherList= new Teacher[numberOfTeacher];
+        for (int i=0;i<=numberOfTeacher-1 ; i++){
+            newTeacherList[i]= getInputEntity();
+        }
+        return newTeacherList;
     }
 }
