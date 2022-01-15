@@ -1,5 +1,7 @@
 package helper;
 
+import entity.Teacher;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -60,6 +62,19 @@ public class ValidateTeacher {
         }   else {
             System.out.println("Chỉ được nhập các mã [GS-TS] Giáo sư tiến sĩ,[PGS-TS] Phó giáo sư tiến sĩ ,[GVC] Giáo viên chính,[TS] Tiến sĩ");
             return false;}
+    }
+
+    public Boolean checkTeacherExist(int id, Teacher[] teacherList){
+        boolean check=false;
+        for (int i=0;i<=teacherList.length-1;i++){
+            if(teacherList[i].getId()==id){
+                check=true;
+            }
+        }
+        if (!check){
+            System.out.println("Không tìm thấy giáo viên này");
+        }
+        return check;
     }
 
 }

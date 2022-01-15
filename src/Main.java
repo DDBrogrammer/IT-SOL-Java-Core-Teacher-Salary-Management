@@ -77,7 +77,61 @@ public class Main {
                     if(checkContinue_2){
                         break;
                     } else{run=false;}
+                case 3:
+                    int chose_3;
+                    do {
+                        chose_3 = helper.getInt("Nhập lựa chọn:\n"
+                                + "[1] Thêm bản ghi quản lý dạy học.\n"
+                                + "[2] Xem danh sách bản ghi quản lý dạy học.\n"
+                                + "[3] Quay lại.\n"
+                        );
+                        if(chose_3>=1 && chose_3<=3){
+                            break;
+                        }
+                        System.out.println("Bạn phải nhập số nguyên từ 1 đến 3");
+                    } while(true);
+                    if(chose_3==1){
+                        manageTeachingService.getInputManageTeaching(teacherList,subjectList,manageTeachingList);
+                    }else if(chose_3==2){
+                        manageTeachingService.printListData(manageTeachingList);
+                    }else if (chose_3==3){
+                        break;
+                }
+                    boolean checkContinue_3= helper.askYesNo();
+                    if(checkContinue_3){
+                        break;
+                    } else{run=false;}
+                case 4:
+                    int chose_4;
+                    do {
+                        chose_4 = helper.getInt("Nhập lựa chọn:\n"
+                                + "[1] Sắp xếp danh sách theo tên giáo viên.\n"
+                                + "[2] Sắp xếp danh sách theo tổng số tiết dạy.\n"
+                                + "[3] Quay lại.\n"
+                        );
+                        if(chose_4>=1 && chose_4<=3){
+                            break;
+                        }
+                        System.out.println("Bạn phải nhập số nguyên từ 1 đến 3");
+                    } while(true);
+                    if(chose_4==1){
+                        manageTeachingService.printListDataByName(manageTeachingList);
+                    }else if(chose_4==2){
+                        manageTeachingService.printListDataByTotalLesson(manageTeachingList);
+                    } else if(chose_4==3){
+                        break;
+                    }
+                    boolean checkContinue_4= helper.askYesNo();
+                    if(checkContinue_4){
+                        break;
+                    } else{run=false;}
                 case 5:
+                    manageTeachingService.printSalary(manageTeachingList);
+                    boolean checkContinue_5= helper.askYesNo();
+                    if(checkContinue_5){
+                        break;
+                    } else{run=false;}
+                case 6:
                     run=false;
                     break;
                 default:

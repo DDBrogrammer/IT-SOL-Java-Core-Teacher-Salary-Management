@@ -1,6 +1,7 @@
 package service;
 
 import entity.Subject;
+import entity.Subject;
 import helper.Helper;
 import helper.ValidateSubject;
 
@@ -95,7 +96,28 @@ public class SubjectService implements BaseService<Subject> {
         }
         return newSubjectList;
     }
+    public Subject getEntityById(Subject[] subjectList ){
+        Subject subject=new Subject(0,"",0,0,0);
+        int subjectId;
+        do{
+            subjectId= helper.getInt("Nhập id môn học");
+            if(validateSubject.checkSubjectExist(subjectId,subjectList)){
+                break;
+            }
+        }while(true);
+        for(int i=0;i<=subjectList.length-1;i++){
+            if(subjectList[i].getId()== subjectId){
+                subject.setId(subjectId);
+                subject.setName(subjectList[i].getName());
+                subject.setTotalLesson(subjectList[i].getTotalLesson());
+                subject.setTotalTheoryLesson(subjectList[i].getTotalTheoryLesson());
+                subject.setExpense(subjectList[i].getExpense());
+            }
+        }
+        return subject;
 
+
+    }
 
 
 

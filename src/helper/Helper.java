@@ -8,9 +8,10 @@ public class Helper {
         System.out.println("Nhập lựa chọn:\n"
                 + "[1] Quản lý giáo viên.\n"
                 + "[2] Quản lý môn học.\n"
-                + "[3] Quản lý mượn sách.\n"
+                + "[3] Quản lý đăng ký lớp học.\n"
                 + "[4] Sắp xếp danh sách.\n"
-                + "[5] Thoát chương  trình." );
+                + "[5] Xem danh sách tiền lương. \n"
+                + "[6] Thoát chương  trình.");
 
     }
 

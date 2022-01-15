@@ -97,4 +97,26 @@ public class TeacherService implements BaseService<Teacher>{
         }
         return newTeacherList;
     }
+    public Teacher getEntityById(Teacher[] teacherList ){
+        Teacher teacher=new Teacher("","","",0,"");
+        int teacherId;
+        do{
+            teacherId= helper.getInt("Nhập id người đọc");
+            if(validateTeacher.checkTeacherExist(teacherId,teacherList)){
+                break;
+            }
+        }while(true);
+        for(int i=0;i<=teacherList.length-1;i++){
+            if(teacherList[i].getId()== teacherId){
+                teacher.setId(teacherId);
+                teacher.setName(teacherList[i].getName());
+                teacher.setAddress(teacherList[i].getAddress());
+                teacher.setPhone(teacherList[i].getPhone());
+                teacher.setDegree(teacherList[i].getDegree());
+            }
+        }
+        return teacher;
+
+
+    }
 }

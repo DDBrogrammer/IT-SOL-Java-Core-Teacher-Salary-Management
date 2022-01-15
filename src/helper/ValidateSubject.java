@@ -1,5 +1,8 @@
 package helper;
 
+import entity.Subject;
+import entity.Teacher;
+
 public class ValidateSubject {
     public Boolean validateName( String name){
         if(name.length() == 0){
@@ -37,5 +40,17 @@ public class ValidateSubject {
             System.out.println("Chi phí phải lớn hơn 0 ");
             return false;
         }else return true;
+    }
+    public Boolean checkSubjectExist(int id, Subject[] subjectList){
+        boolean check=false;
+        for (int i=0;i<=subjectList.length-1;i++){
+            if(subjectList[i].getId()==id){
+                check=true;
+            }
+        }
+        if (!check){
+            System.out.println("Không tìm thấy môn học này");
+        }
+        return check;
     }
 }
