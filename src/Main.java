@@ -28,7 +28,7 @@ public class Main {
                     do {
                         chose_1 = helper.getInt("Nhập lựa chọn:\n"
                                 + "[1] Thêm giáo viên.\n"
-                                + "[2] Xem danh sách sách.\n"
+                                + "[2] Xem danh giáo viên.\n"
                                 + "[3] Quay lại.\n"
                         );
                         if(chose_1>=1 && chose_1<=3){

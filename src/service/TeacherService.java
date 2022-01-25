@@ -80,7 +80,7 @@ public class TeacherService implements BaseService<Teacher>{
             }
         }
         while(true);
-        do{ degree= helper.getString("Nhập trình độ:");
+        do{ degree= helper.getString("Nhập trình độ ([GS-TS] Giáo sư tiến sĩ, [PGS-TS] Phó giáo sư tiến sĩ,[GVC] Giảng viên chính , [TS] Thạc sỹ):");
             if(validateTeacher.validateDegree(degree)){
                 break;
             }
@@ -101,7 +101,7 @@ public class TeacherService implements BaseService<Teacher>{
         Teacher teacher=new Teacher("","","",0,"");
         int teacherId;
         do{
-            teacherId= helper.getInt("Nhập id người đọc");
+            teacherId= helper.getInt("Nhập id giáo viên");
             if(validateTeacher.checkTeacherExist(teacherId,teacherList)){
                 break;
             }

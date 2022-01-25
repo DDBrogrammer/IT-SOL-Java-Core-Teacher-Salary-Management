@@ -12,10 +12,19 @@ public class ValidateManageTeaching {
             return false;
         }   else return true ;
     }
+    public int getTrueListLength(Subject[] tempSubjectList){
+        int u=0;
+        for(int i=0;i< tempSubjectList.length-1; i++){
+            if(tempSubjectList[i].getId()!=0){
+                u++;
+            }
 
+        }
+        return u;
+    }
    public int countTotalLesson(Subject [] subjectsList, int[] numOfClassList){
        int count=0;
-        for(int i=0;i<=subjectsList.length-1;i++){
+        for(int i=0;i<=getTrueListLength(subjectsList)-1;i++){
            count=count+ (subjectsList[i].getTotalLesson()*numOfClassList[i]);
         }
         return count;

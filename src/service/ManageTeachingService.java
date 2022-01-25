@@ -13,18 +13,20 @@ public class ManageTeachingService implements BaseService<ManageTeaching>  {
     private Helper helper = new Helper();
     private ValidateManageTeaching validateManageTeaching=new ValidateManageTeaching();
      public void setTempListData(ManageTeaching[] manageTeachingList){
-        Subject[] tempSubjectList= new Subject[99];
-        for(int i=0;i<= tempSubjectList.length-1;i++){
-            tempSubjectList[i]=new Subject(0,"",0,0,0);
-        }
-        int [] tempQuantity=new int [99];
-        for(int i=0;i<=tempQuantity.length-1;i++){
-            tempQuantity[i]=0;
-        }
-        Teacher tempTeacher=new Teacher("","","",0,"");
-        for(int i=0;i<= manageTeachingList.length-1;i++){
-            manageTeachingList[i]= new ManageTeaching(tempTeacher,tempSubjectList,tempQuantity);
-        }
+         Subject[] tempSubjectList= new Subject[99];
+         for(int i=0;i<= tempSubjectList.length-1;i++){
+             tempSubjectList[i]=new Subject(0,"",0,0,0);
+         }
+         int [] tempQuantity=new int [99];
+         for(int i=0;i<=tempQuantity.length-1;i++){
+             tempQuantity[i]=0;
+         }
+         Teacher tempTeacher=new Teacher("","","",0,"");
+         for(int i=0;i<= manageTeachingList.length-1;i++){
+             manageTeachingList[i]= new ManageTeaching(tempTeacher,tempSubjectList,tempQuantity);
+         }
+
+
     }
 
     public int getTrueListLength(ManageTeaching[] tempManageTeachingList){
@@ -36,6 +38,8 @@ public class ManageTeachingService implements BaseService<ManageTeaching>  {
         }
         return u;
     }
+
+
     @Override
     public void mergeNewListAndSetId(ManageTeaching[] newSubjectList, ManageTeaching[] tempSubjectList) {
     }
@@ -52,10 +56,7 @@ public class ManageTeachingService implements BaseService<ManageTeaching>  {
 
     @Override
     public void printListData(ManageTeaching[] tempList) {
-        System.out.println(tempList.length);
-        System.out.println(tempList[0].getSubjectList().length);
-        System.out.println(tempList[0].getNumberOfClass().length);
-        System.out.println(subjectService.getTrueListLength(tempList[0].getSubjectList()));
+
         for(int i=0;i<= tempList.length-1;i++){
 
             if(tempList[i].getTeacher().getId()!=0){
@@ -91,6 +92,7 @@ public class ManageTeachingService implements BaseService<ManageTeaching>  {
             for (int j = i + 1; j < getTrueListLength(manageTeachingList); j++) {
                 if (validateManageTeaching.countTotalLesson(manageTeachingList[i].getSubjectList(),manageTeachingList[i].getNumberOfClass())<
                         validateManageTeaching.countTotalLesson(manageTeachingList[j].getSubjectList(),manageTeachingList[j].getNumberOfClass())) {
+
                     temp = manageTeachingList[i];
                     manageTeachingList[i] = manageTeachingList[j];
                     manageTeachingList[j] = temp;
@@ -128,7 +130,7 @@ public class ManageTeachingService implements BaseService<ManageTeaching>  {
         }
         subjectService.printListData(subjectList);
         for(int i=0;i<arrSubject.length;i++){
-            System.out.println("Chọn từ danh sách đầu sách đã có");
+            System.out.println("Chọn từ danh sách môn học đã có");
             Subject subject =subjectService.getEntityById(subjectList);
             System.out.println("Đã chọn môn học: "+subject.toString());
             do{
@@ -146,7 +148,7 @@ public class ManageTeachingService implements BaseService<ManageTeaching>  {
             arrSubject[i].setExpense(subject.getExpense());
             numberOfClassList[i]=numberOfClass;
         }
-        ManageTeaching borrowBook=new ManageTeaching(teacher,subjectList,numberOfClassList);
+        ManageTeaching borrowBook=new ManageTeaching(teacher,arrSubject,numberOfClassList);
         mergeNewData(borrowBook,manageTeachingList);
         System.out.println(borrowBook.toString());
 
@@ -167,8 +169,8 @@ public class ManageTeachingService implements BaseService<ManageTeaching>  {
    public double countSalary(Subject[] subjectList, int[] numberOfClassList){
     double salary=0;
     for(int i = 0;i<=subjectList.length-1;i++){
-        salary=((subjectList[i].getTotalLesson()-subjectList[i].getTotalTheoryLesson())*0.7*subjectList[i].getExpense())+
-                ((subjectList[i].getTotalTheoryLesson())*subjectList[i].getExpense()) +salary;
+        salary=(((subjectList[i].getTotalLesson()-subjectList[i].getTotalTheoryLesson())*0.7*subjectList[i].getExpense())+
+                ((subjectList[i].getTotalTheoryLesson())*subjectList[i].getExpense()))*numberOfClassList[i] +salary;
     }
     return salary;
    }
